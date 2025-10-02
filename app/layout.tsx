@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Inter, Playfair_Display } from "next/font/google"
 import "./globals.css"
 import { CartProvider } from "@/lib/cart-context"
+import { AOSProvider } from "@/components/aos-provider"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -17,10 +18,9 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: "Artisan Bakery - Handcrafted Cakes, Biscuits & More",
+  title: "Cake Paradise - Handcrafted Cakes, Biscuits & More",
   description:
     "Discover our selection of handcrafted cakes, biscuits, muffins, and chocolate treats. Made fresh daily with premium ingredients.",
-    generator: 'v0.app'
 }
 
 export default function RootLayout({
@@ -31,7 +31,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <body>
-        <CartProvider>{children}</CartProvider>
+        <CartProvider>
+          <AOSProvider />
+          {children}
+        </CartProvider>
       </body>
     </html>
   )

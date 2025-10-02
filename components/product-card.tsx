@@ -13,7 +13,7 @@ interface ProductCardProps {
 
 export function ProductCard({ product, onAddToCart }: ProductCardProps) {
   return (
-    <Card className="group overflow-hidden border-border hover:shadow-lg transition-shadow duration-300">
+    <Card className="group overflow-hidden border-border hover:shadow-lg transition-shadow duration-300 py-0" data-aos="fade-up">
       <Link href={`/products/${product.id}`}>
         <div className="aspect-square overflow-hidden bg-muted">
           <Image
@@ -32,7 +32,7 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
           </h3>
         </Link>
         <p className="text-sm text-muted-foreground line-clamp-2 mb-4">{product.description}</p>
-        <p className="text-2xl font-serif font-semibold text-foreground">${product.price.toFixed(2)}</p>
+        <p className="text-2xl font-sans font-semibold text-foreground">₹{" "}{product.price.toFixed(2)}</p>
       </CardContent>
       <CardFooter className="p-6 pt-0">
         <Button

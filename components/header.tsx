@@ -13,7 +13,7 @@ export function Header() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center space-x-2">
-            <span className="text-2xl font-serif font-bold text-foreground">Artisan Bakery</span>
+            <span className="text-2xl font-serif font-bold text-foreground">Cake Paradise</span>
           </Link>
 
           <nav className="hidden md:flex items-center space-x-8">

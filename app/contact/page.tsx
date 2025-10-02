@@ -22,9 +22,9 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12" data-aos="fade-up">
         <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-12" data-aos="fade-up" data-aos-delay="100">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-4">Contact Us</h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">We'd love to hear from you. Send us a message below.</p>
           </div>
