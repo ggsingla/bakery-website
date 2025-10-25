@@ -1,12 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { ShoppingCart } from 'lucide-react';
-import { useCart } from '@/lib/cart-context';
-import { Button } from '@/components/ui/button';
 
 export function Header() {
-  const { totalItems } = useCart();
 
   return (
     <header className='border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50'>
@@ -45,19 +41,6 @@ export function Header() {
             </Link>
           </nav>
 
-          <Link href='/cart'>
-            <Button variant='ghost' size='icon' className='relative'>
-              <ShoppingCart className='h-5 w-5' />
-              {totalItems > 0 && (
-                <span className='absolute -top-1 -right-1 h-5 w-5 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center font-medium'>
-                  {totalItems}
-                </span>
-              )}
-              <span className='sr-only'>
-                Shopping cart with {totalItems} items
-              </span>
-            </Button>
-          </Link>
         </div>
       </div>
     </header>
