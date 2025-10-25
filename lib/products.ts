@@ -1,4 +1,4 @@
-import type { Product } from './types'
+import type { Product } from './types';
 
 export const products: Product[] = [
   {
@@ -195,42 +195,41 @@ export const products: Product[] = [
     weight: '200g (8 pieces)',
     featured: true,
   },
-]
+];
 
 export function getProductById(id: string): Product | undefined {
-  return products.find((p) => p.id === id)
+  return products.find(p => p.id === id);
 }
 
 export function getProductsByCategory(
   category: Product['category']
 ): Product[] {
-  return products.filter((p) => p.category === category)
+  return products.filter(p => p.category === category);
 }
 
 export function getFeaturedProducts(): Product[] {
-  return products.filter((p) => p.featured)
+  return products.filter(p => p.featured);
 }
 
 export function getRecommendedProducts(
   currentProductId: string,
   limit = 4
 ): Product[] {
-  const currentProduct = getProductById(currentProductId)
-  if (!currentProduct) return []
+  const currentProduct = getProductById(currentProductId);
+  if (!currentProduct) return [];
 
   // Get products from the same category, excluding the current product
   const sameCategory = products.filter(
-    (p) => p.category === currentProduct.category && p.id !== currentProductId
-  )
+    p => p.category === currentProduct.category && p.id !== currentProductId
+  );
 
   // If we don't have enough from the same category, add featured products
   if (sameCategory.length < limit) {
     const featured = getFeaturedProducts().filter(
-      (p) =>
-        p.id !== currentProductId && !sameCategory.find((sc) => sc.id === p.id)
-    )
-    return [...sameCategory, ...featured].slice(0, limit)
+      p => p.id !== currentProductId && !sameCategory.find(sc => sc.id === p.id)
+    );
+    return [...sameCategory, ...featured].slice(0, limit);
   }
 
-  return sameCategory.slice(0, limit)
+  return sameCategory.slice(0, limit);
 }
