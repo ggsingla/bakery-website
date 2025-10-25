@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
+import { company } from '@/constants/company'
 
 const Footer = () => {
   return (
@@ -29,8 +30,9 @@ const Footer = () => {
           </div>
           <div>
             <h4 className="font-semibold mb-4">Contact</h4>
-            <p className="text-sm text-muted-foreground">Email: hello@cakeparadise.com</p>
-            <p className="text-sm text-muted-foreground">Phone: (555) 123-4567</p>
+            <p className="text-sm text-muted-foreground">Email: {company.email}</p>
+            <p className="text-sm text-muted-foreground">Phone: {company.phone}</p>
+            <p className="text-sm text-muted-foreground">Address: {company.address}, {company.city}, {company.state}, {company.zip}</p>
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-border text-center text-sm text-muted-foreground">

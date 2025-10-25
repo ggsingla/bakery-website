@@ -1,23 +1,12 @@
-"use client"
-
 import { Header } from "@/components/header"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
-import { useState } from "react"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 export default function ContactPage() {
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [message, setMessage] = useState("")
-  const [submitted, setSubmitted] = useState(false)
-
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    setSubmitted(true)
-  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -31,50 +20,123 @@ export default function ContactPage() {
 
           <Card className="border-border">
             <CardContent className="p-6">
-              {submitted ? (
-                <div className="text-center py-8">
-                  <p className="text-foreground text-lg font-medium">Thanks, we'll get back to you soon!</p>
+              <form
+                action="https://formsubmit.co/treatsbycakeparadise@gmail.com"
+                method="POST"
+                encType="multipart/form-data"
+                className="space-y-6"
+              >
+                <div className="space-y-2">
+                  <Label className="text-sm" htmlFor="name">
+                    Name
+                  </Label>
+                  <Input
+                    id="name"
+                    name="name"
+                    placeholder="Your name"
+                    required
+                    minLength={2}
+                  />
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="space-y-2">
-                    <Label className="text-sm" htmlFor="name">
-                      Name
-                    </Label>
-                    <Input id="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Your name" />
-                  </div>
 
-                  <div className="space-y-2">
-                    <Label className="text-sm" htmlFor="email">
-                      Email
-                    </Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="you@example.com"
-                    />
-                  </div>
+                <div className="space-y-2">
+                  <Label className="text-sm" htmlFor="email">
+                    Email
+                  </Label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="you@example.com"
+                    required
+                  />
+                </div>
 
-                  <div className="space-y-2">
-                    <Label className="text-sm" htmlFor="message">
-                      Message
-                    </Label>
-                    <Textarea
-                      id="message"
-                      value={message}
-                      onChange={(e) => setMessage(e.target.value)}
-                      placeholder="How can we help?"
-                      className="min-h-[140px]"
-                    />
-                  </div>
+                <div className="space-y-2">
+                  <Label className="text-sm" htmlFor="phone">
+                    Phone Number
+                  </Label>
+                  <Input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    placeholder="+91 98765 43210"
+                    required
+                  />
+                </div>
 
-                  <Button type="submit" className="bg-primary text-primary-foreground hover:bg-primary/90">
-                    Send Message
-                  </Button>
-                </form>
-              )}
+                <div className="space-y-2">
+                  <Label className="text-sm" htmlFor="occasion">
+                    Occasion
+                  </Label>
+                  <Select name="occasion" required>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Select an occasion" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="birthday">Birthday</SelectItem>
+                      <SelectItem value="anniversary">Anniversary</SelectItem>
+                      <SelectItem value="wedding">Wedding</SelectItem>
+                      <SelectItem value="newborn">New Born Baby Welcome Cake</SelectItem>
+                      <SelectItem value="graduation">Graduation</SelectItem>
+                      <SelectItem value="promotion">Promotion/Career Achievement</SelectItem>
+                      <SelectItem value="housewarming">Housewarming</SelectItem>
+                      <SelectItem value="retirement">Retirement</SelectItem>
+                      <SelectItem value="valentine">Valentine's Day</SelectItem>
+                      <SelectItem value="mothers-day">Mother's Day</SelectItem>
+                      <SelectItem value="fathers-day">Father's Day</SelectItem>
+                      <SelectItem value="christmas">Christmas</SelectItem>
+                      <SelectItem value="diwali">Diwali</SelectItem>
+                      <SelectItem value="eid">Eid</SelectItem>
+                      <SelectItem value="corporate">Corporate Event</SelectItem>
+                      <SelectItem value="baby-shower">Baby Shower</SelectItem>
+                      <SelectItem value="bridal-shower">Bridal Shower</SelectItem>
+                      <SelectItem value="farewell">Farewell</SelectItem>
+                      <SelectItem value="get-well">Get Well Soon</SelectItem>
+                      <SelectItem value="thank-you">Thank You</SelectItem>
+                      <SelectItem value="other">Other</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label className="text-sm" htmlFor="message">
+                    Message
+                  </Label>
+                  <Textarea
+                    id="message"
+                    name="message"
+                    placeholder="How can we help?"
+                    className="min-h-[140px]"
+                    required
+                    minLength={10}
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label className="text-sm" htmlFor="attachment">
+                    Attach Image (Optional)
+                  </Label>
+                  <Input
+                    id="attachment"
+                    name="attachment"
+                    type="file"
+                    accept="image/png, image/jpeg, image/jpg, image/webp"
+                    className="file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-primary-foreground hover:file:bg-primary/90"
+                  />
+                  <p className="text-xs text-muted-foreground">
+                    Upload an image to show us your inspiration or reference (max 5MB, PNG, JPG, GIF, WebP)
+                  </p>
+                </div>
+
+                <input type="hidden" name="_next" value={`${process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/thanks`} />
+                <input type="hidden" name="_subject" value="New contact form submission" />
+                <input type="hidden" name="_autoresponse" value="Thank you for your message. We'll get back to you soon!" />
+
+                <Button type="submit" className="bg-primary text-primary-foreground hover:bg-primary/90">
+                  Send Message
+                </Button>
+              </form>
             </CardContent>
           </Card>
         </div>
