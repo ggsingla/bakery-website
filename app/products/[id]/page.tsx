@@ -1,91 +1,117 @@
-import Image from "next/image"
-import Link from "next/link"
-import { notFound } from "next/navigation"
-import { Header } from "@/components/header"
-import { Button } from "@/components/ui/button"
-import { ProductCard } from "@/components/product-card"
-import { getProductById, getRecommendedProducts } from "@/lib/products"
+import Image from 'next/image';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import { Header } from '@/components/header';
+import { Button } from '@/components/ui/button';
+import { ProductCard } from '@/components/product-card';
+import { getProductById, getRecommendedProducts } from '@/lib/products';
 
 interface ProductPageProps {
-  params: { id: string }
+  params: { id: string };
 }
 
 export default function ProductPage({ params }: ProductPageProps) {
-  const { id } = params
-  const product = getProductById(id)
+  const { id } = params;
+  const product = getProductById(id);
 
   if (!product) {
-    notFound()
+    notFound();
   }
 
-  const recommended = getRecommendedProducts(product.id, 4)
+  const recommended = getRecommendedProducts(product.id, 4);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className='min-h-screen bg-background'>
       <Header />
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12" data-aos="fade-up">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div data-aos="fade-right">
-              <div className="aspect-square bg-muted overflow-hidden rounded-md">
+      <main
+        className='container mx-auto px-4 sm:px-6 lg:px-8 py-12'
+        data-aos='fade-up'
+      >
+        <div className='max-w-6xl mx-auto'>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-10'>
+            <div data-aos='fade-right'>
+              <div className='aspect-square bg-muted overflow-hidden rounded-md'>
                 <Image
-                  src={product.images?.[0] || product.image || "/placeholder.svg"}
+                  src={
+                    product.images?.[0] || product.image || '/placeholder.svg'
+                  }
                   alt={product.name}
                   width={800}
                   height={800}
-                  className="object-cover w-full h-full"
+                  className='object-cover w-full h-full'
                 />
               </div>
               {product.images && product.images.length > 1 && (
-                <div className="grid grid-cols-4 gap-3 mt-3">
+                <div className='grid grid-cols-4 gap-3 mt-3'>
                   {product.images.slice(1, 5).map((img, idx) => (
-                    <div key={idx} className="aspect-square bg-muted overflow-hidden rounded">
-                      <Image src={img} alt={`${product.name} ${idx + 2}`} width={200} height={200} className="object-cover w-full h-full" />
+                    <div
+                      key={idx}
+                      className='aspect-square bg-muted overflow-hidden rounded'
+                    >
+                      <Image
+                        src={img}
+                        alt={`${product.name} ${idx + 2}`}
+                        width={200}
+                        height={200}
+                        className='object-cover w-full h-full'
+                      />
                     </div>
                   ))}
                 </div>
               )}
             </div>
 
-            <div data-aos="fade-left" data-aos-delay="100">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-4">{product.name}</h1>
-              <p className="text-lg text-muted-foreground text-pretty">{product.description}</p>
-              <p className="text-3xl font-sans font-semibold text-foreground mt-6">₹{" "}{product.price.toFixed(2)} <span className="text-sm text-muted-foreground">
-                / {product.weight}
-              </span>
-
+            <div data-aos='fade-left' data-aos-delay='100'>
+              <h1 className='text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-4'>
+                {product.name}
+              </h1>
+              <p className='text-lg text-muted-foreground text-pretty'>
+                {product.description}
+              </p>
+              <p className='text-3xl font-sans font-semibold text-foreground mt-6'>
+                ₹ {product.price.toFixed(2)}{' '}
+                <span className='text-sm text-muted-foreground'>
+                  / {product.weight}
+                </span>
               </p>
 
               {product.ingredients && product.ingredients.length > 0 && (
-                <div className="mt-6">
-                  <h2 className="font-semibold text-foreground mb-2">Ingredients</h2>
-                  <ul className="list-disc list-inside text-muted-foreground">
-                    {product.ingredients.map((ing) => (
+                <div className='mt-6'>
+                  <h2 className='font-semibold text-foreground mb-2'>
+                    Ingredients
+                  </h2>
+                  <ul className='list-disc list-inside text-muted-foreground'>
+                    {product.ingredients.map(ing => (
                       <li key={ing}>{ing}</li>
                     ))}
                   </ul>
                 </div>
               )}
 
-
               {product.weight && (
-                <p className="text-muted-foreground mt-4">Weight: {product.weight}</p>
+                <p className='text-muted-foreground mt-4'>
+                  Weight: {product.weight}
+                </p>
               )}
 
-              <div className="mt-8 flex gap-3">
-                <Link href="/products">
-                  <Button variant="outline">Back to products</Button>
+              <div className='mt-8 flex gap-3'>
+                <Link href='/products'>
+                  <Button variant='outline'>Back to products</Button>
                 </Link>
-                <Button className="bg-primary text-primary-foreground hover:bg-primary/90">Add to Cart</Button>
+                <Button className='bg-primary text-primary-foreground hover:bg-primary/90'>
+                  Add to Cart
+                </Button>
               </div>
             </div>
           </div>
 
           {recommended.length > 0 && (
-            <div className="mt-16">
-              <h2 className="text-2xl font-serif font-semibold text-foreground mb-6">You might also like</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {recommended.map((item) => (
+            <div className='mt-16'>
+              <h2 className='text-2xl font-serif font-semibold text-foreground mb-6'>
+                You might also like
+              </h2>
+              <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6'>
+                {recommended.map(item => (
                   <ProductCard key={item.id} product={item} />
                 ))}
               </div>
@@ -94,7 +120,5 @@ export default function ProductPage({ params }: ProductPageProps) {
         </div>
       </main>
     </div>
-  )
+  );
 }
-
-
