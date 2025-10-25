@@ -1,7 +1,7 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Header } from '@/components/header';
@@ -11,7 +11,7 @@ import { CheckCircle, Home, ShoppingBag, Clock, Phone } from 'lucide-react';
 import { getProductById } from '@/lib/products';
 import type { Product } from '@/lib/types';
 
-export default function OrderPlacedPage() {
+function OrderPlacedContent() {
   const searchParams = useSearchParams();
   const [product, setProduct] = useState<Product | null>(null);
   const [customerName, setCustomerName] = useState<string>('');
@@ -202,5 +202,25 @@ export default function OrderPlacedPage() {
         </div>
       </main>
     </div>
+  );
+}
+
+export default function OrderPlacedPage() {
+  return (
+    <Suspense fallback={
+      <div className='min-h-screen bg-background'>
+        <Header />
+        <main className='container mx-auto px-4 sm:px-6 lg:px-8 py-12'>
+          <div className='max-w-4xl mx-auto'>
+            <div className='text-center'>
+              <div className='animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto'></div>
+              <p className='mt-4 text-muted-foreground'>Loading your order...</p>
+            </div>
+          </div>
+        </main>
+      </div>
+    }>
+      <OrderPlacedContent />
+    </Suspense>
   );
 }
