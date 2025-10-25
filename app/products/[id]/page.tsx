@@ -1,9 +1,13 @@
+'use client';
+
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Header } from '@/components/header';
 import { Button } from '@/components/ui/button';
 import { ProductCard } from '@/components/product-card';
+import { BuyNowDialog } from '@/components/buy-now-dialog';
 import { getProductById, getRecommendedProducts } from '@/lib/products';
 
 interface ProductPageProps {
@@ -13,6 +17,7 @@ interface ProductPageProps {
 export default function ProductPage({ params }: ProductPageProps) {
   const { id } = params;
   const product = getProductById(id);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   if (!product) {
     notFound();
@@ -98,8 +103,11 @@ export default function ProductPage({ params }: ProductPageProps) {
                 <Link href='/products'>
                   <Button variant='outline'>Back to products</Button>
                 </Link>
-                <Button className='bg-primary text-primary-foreground hover:bg-primary/90'>
-                  Add to Cart
+                <Button
+                  onClick={() => setIsDialogOpen(true)}
+                  className='bg-primary text-primary-foreground hover:bg-primary/90'
+                >
+                  Buy Now
                 </Button>
               </div>
             </div>
@@ -119,6 +127,12 @@ export default function ProductPage({ params }: ProductPageProps) {
           )}
         </div>
       </main>
+
+      <BuyNowDialog
+        product={product}
+        open={isDialogOpen}
+        onOpenChange={setIsDialogOpen}
+      />
     </div>
   );
 }
