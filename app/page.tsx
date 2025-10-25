@@ -34,7 +34,7 @@ export default function HomePage() {
             premium ingredients.
           </p>
           <Link href="/products" data-aos="fade-up" data-aos-delay="300">
-            <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground text-lg px-8">
+            <Button size="lg">
               Explore Our Products
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
@@ -62,7 +62,7 @@ export default function HomePage() {
 
           <div className="text-center">
             <Link href="/products">
-              <Button variant="outline" size="lg" className="text-lg px-8 bg-transparent">
+              <Button variant="link" size="lg">
                 View All Products
               </Button>
             </Link>

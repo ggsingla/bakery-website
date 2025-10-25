@@ -37,7 +37,8 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
       <CardFooter className="p-6 pt-0">
         <Button
           onClick={() => onAddToCart?.(product)}
-          className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+          variant='outline'
+          className="w-full"
         >
           Add to Cart
         </Button>

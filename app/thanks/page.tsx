@@ -29,20 +29,11 @@ export default function ThanksPage() {
                 <Link href="/">
                   <Button
                     size="lg"
-                    className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8"
                   >
                     <Home className="mr-2 h-5 w-5" />
                     Back to Home
                   </Button>
                 </Link>
-
-                <div className="pt-4">
-                  <Link href="/products">
-                    <Button variant="outline" size="lg" className="text-lg px-8">
-                      Browse Our Products
-                    </Button>
-                  </Link>
-                </div>
               </div>
             </CardContent>
           </Card>
