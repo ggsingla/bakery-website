@@ -9,6 +9,14 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  webpack: (config, { dev, isServer }) => {
+    // Disable webpack cache warnings in development
+    if (dev) {
+      config.cache = false;
+    }
+    
+    return config;
+  },
 };
 
 export default nextConfig;
