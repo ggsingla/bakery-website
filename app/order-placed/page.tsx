@@ -23,7 +23,7 @@ function OrderPlacedContent() {
 
     if (productId) {
       const productData = getProductById(productId);
-      setProduct(productData);
+      setProduct(productData || null);
     }
 
     if (name) {
