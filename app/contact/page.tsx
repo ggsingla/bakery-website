@@ -18,13 +18,13 @@ export default function ContactPage() {
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">We'd love to hear from you. Send us a message below.</p>
           </div>
 
-          <Card className="border-border">
+          <Card className="border-border relative">
             <CardContent className="p-6">
               <form
                 action="https://formsubmit.co/treatsbycakeparadise@gmail.com"
                 method="POST"
                 encType="multipart/form-data"
-                className="space-y-6"
+                className="space-y-6 relative"
               >
                 <div className="space-y-2">
                   <Label className="text-sm" htmlFor="name">
@@ -73,7 +73,7 @@ export default function ContactPage() {
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder="Select an occasion" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent position="popper" sideOffset={4}>
                       <SelectItem value="birthday">Birthday</SelectItem>
                       <SelectItem value="anniversary">Anniversary</SelectItem>
                       <SelectItem value="wedding">Wedding</SelectItem>
