@@ -47,7 +47,7 @@ export function BuyNowDialog({ product, open, onOpenChange }: BuyNowDialogProps)
                 />
               </div>
               <div className="flex-1 min-w-0">
-                <h3 className="font-semibold text-foreground truncate">
+                <h3 className="font-semibold text-foreground">
                   {product.name}
                 </h3>
                 <p className="text-2xl font-bold text-primary">
@@ -157,7 +157,13 @@ export function BuyNowDialog({ product, open, onOpenChange }: BuyNowDialogProps)
               value="table"
             />
 
-            <div className="flex gap-3 pt-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-4">
+              <Button
+                type="submit"
+                className="flex-1"
+              >
+                Place Order
+              </Button>
               <Button
                 type="button"
                 variant="outline"
@@ -166,12 +172,7 @@ export function BuyNowDialog({ product, open, onOpenChange }: BuyNowDialogProps)
               >
                 Cancel
               </Button>
-              <Button
-                type="submit"
-                className="flex-1"
-              >
-                Place Order
-              </Button>
+
             </div>
           </form>
         </div>
