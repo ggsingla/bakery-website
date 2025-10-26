@@ -45,6 +45,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                   width={800}
                   height={800}
                   className='object-cover w-full h-full'
+                  unoptimized
                 />
               </div>
               {product.images && product.images.length > 1 && (
@@ -60,6 +61,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                         width={200}
                         height={200}
                         className='object-cover w-full h-full'
+                        unoptimized
                       />
                     </div>
                   ))}

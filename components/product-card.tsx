@@ -30,6 +30,7 @@ export function ProductCard({ product }: ProductCardProps) {
               width={400}
               height={400}
               className='object-cover w-full h-full group-hover:scale-105 transition-transform duration-300'
+              unoptimized
             />
           </div>
         </Link>

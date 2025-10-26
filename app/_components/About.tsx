@@ -33,6 +33,7 @@ const About = () => {
               alt='Our artisan baker crafting fresh vegetarian treats'
               fill
               className='object-cover object-top'
+              unoptimized
             />
           </div>
         </div>

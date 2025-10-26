@@ -91,6 +91,7 @@ function OrderPlacedContent() {
                       width={96}
                       height={96}
                       className='object-cover w-full h-full'
+                      unoptimized
                     />
                   </div>
                   <div className='flex-1'>

@@ -43,6 +43,7 @@ export function BuyNowDialog({ product, open, onOpenChange }: BuyNowDialogProps)
                   width={80}
                   height={80}
                   className="object-cover w-full h-full"
+                  unoptimized
                 />
               </div>
               <div className="flex-1 min-w-0">
