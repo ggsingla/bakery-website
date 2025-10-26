@@ -10,6 +10,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { CheckCircle, Home, ShoppingBag, Clock, Phone } from 'lucide-react';
 import { getProductById } from '@/lib/products';
 import type { Product } from '@/lib/types';
+import { company } from '@/constants/company';
 
 function OrderPlacedContent() {
   const searchParams = useSearchParams();
@@ -177,8 +178,8 @@ function OrderPlacedContent() {
                 If you have any questions about your order, feel free to contact us:
               </p>
               <div className='space-y-2 text-sm'>
-                <p><strong>Phone:</strong> +91 98765 43210</p>
-                <p><strong>Email:</strong> treatsbycakeparadise@gmail.com</p>
+                <p><strong>Phone:</strong> {company.phone}</p>
+                <p><strong>Email:</strong> {company.email}</p>
                 <p><strong>Response Time:</strong> Usually within 2-4 hours</p>
               </div>
             </CardContent>

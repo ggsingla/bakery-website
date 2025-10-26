@@ -80,18 +80,33 @@ export default function ProductPage({ params }: ProductPageProps) {
                 </span>
               </p>
 
-              {product.ingredients && product.ingredients.length > 0 && (
-                <div className='mt-6'>
-                  <h2 className='font-semibold text-foreground mb-2'>
-                    Ingredients
-                  </h2>
-                  <ul className='list-disc list-inside text-muted-foreground'>
-                    {product.ingredients.map(ing => (
-                      <li key={ing}>{ing}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+              <div className="grid gap-2 grid-cols-1 md:grid-cols-2">
+                {product.ingredients && product.ingredients.length > 0 && (
+                  <div className='mt-6'>
+                    <h2 className='font-semibold text-foreground mb-2'>
+                      Ingredients
+                    </h2>
+                    <ul className='list-disc list-inside text-muted-foreground'>
+                      {product.ingredients.map(ing => (
+                        <li key={ing}>{ing}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {product.flavors && product.flavors.length > 0 && (
+                  <div className='mt-6'>
+                    <h2 className='font-semibold text-foreground mb-2'>
+                      Flavors
+                    </h2>
+                    <ul className='list-disc list-inside text-muted-foreground'>
+                      {product.flavors.map(flavor => (
+                        <li key={flavor}>{flavor}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
 
               {product.weight && (
                 <p className='text-muted-foreground mt-4'>
