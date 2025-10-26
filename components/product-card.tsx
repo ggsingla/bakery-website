@@ -15,6 +15,7 @@ interface ProductCardProps {
 export function ProductCard({ product }: ProductCardProps) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
+
   return (
     <>
       <Card
@@ -41,7 +42,7 @@ export function ProductCard({ product }: ProductCardProps) {
           <p className='text-sm text-muted-foreground line-clamp-2 mb-4'>
             {product.description}
           </p>
-          <p className='text-2xl font-sans font-semibold text-foreground'>
+          <p className='text-2xl font-semibold text-foreground'>
             ₹ {product.price.toFixed(2)}
           </p>
         </CardContent>

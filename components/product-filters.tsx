@@ -1,24 +1,19 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+import { getAvailableCategories } from '@/lib/products';
 
 interface ProductFiltersProps {
   selectedCategory: string;
   onCategoryChange: (category: string) => void;
 }
 
-const categories: { value: string; label: string }[] = [
-  { value: 'all', label: 'All Products' },
-  { value: 'cakes', label: 'Cakes' },
-  { value: 'biscuits', label: 'Biscuits' },
-  { value: 'muffins', label: 'Muffins' },
-  { value: 'chocolate-balls', label: 'Chocolate Balls' },
-];
-
 export function ProductFilters({
   selectedCategory,
   onCategoryChange,
 }: ProductFiltersProps) {
+  const categories = getAvailableCategories();
+
   return (
     <div className='flex flex-wrap gap-2 mb-8'>
       {categories.map(category => (
