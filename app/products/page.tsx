@@ -5,11 +5,9 @@ import { Header } from '@/components/header';
 import { ProductCard } from '@/components/product-card';
 import { ProductFilters } from '@/components/product-filters';
 import { products } from '@/lib/products';
-import { useCart } from '@/lib/cart-context';
 
 export default function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const { addItem } = useCart();
 
   const filteredProducts =
     selectedCategory === 'all'
@@ -52,7 +50,7 @@ export default function ProductsPage() {
                 data-aos='fade-up'
                 data-aos-delay={String(100 + (idx % 4) * 50)}
               >
-                <ProductCard product={product} onAddToCart={addItem} />
+                <ProductCard product={product} />
               </div>
             ))}
           </div>

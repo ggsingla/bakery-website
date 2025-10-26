@@ -6,14 +6,12 @@ import { Header } from '@/components/header';
 import { ProductCard } from '@/components/product-card';
 import { Button } from '@/components/ui/button';
 import { getFeaturedProducts } from '@/lib/products';
-import { useCart } from '@/lib/cart-context';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, CheckCircle } from 'lucide-react';
 import Footer from '@/components/footer';
 import About from './_components/About';
 
 export default function HomePage() {
-  const featuredProducts = getFeaturedProducts();
-  const { addItem } = useCart();
+  const featuredProducts = getFeaturedProducts().slice(0, 4);
 
   return (
     <div className='min-h-screen bg-background'>
@@ -30,6 +28,10 @@ export default function HomePage() {
           priority
         />
         <div className='relative z-20 text-center px-4 max-w-4xl mx-auto'>
+          <div className='inline-flex items-center space-x-1 bg-green-50 border border-green-200 text-green-800 px-2 py-1 rounded-full text-xs font-medium mb-2'>
+            <CheckCircle className='w-4 h-4' />
+            <span>100% Vegetarian</span>
+          </div>
           <h1
             className='text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-foreground mb-6 text-balance'
             data-aos='fade-up'
@@ -74,7 +76,6 @@ export default function HomePage() {
               <ProductCard
                 key={product.id}
                 product={product}
-                onAddToCart={addItem}
               />
             ))}
           </div>
