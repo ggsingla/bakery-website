@@ -27,12 +27,12 @@ const About = () => {
               for everyone to enjoy.
             </p>
           </div>
-          <div className='relative h-[500px] md:h-[700px] object-bottom rounded-lg overflow-hidden'>
+          <div className='relative h-[500px] md:h-[500px] rounded-lg overflow-hidden'>
             <Image
               src='/bakery-view.webp'
               alt='Our artisan baker crafting fresh vegetarian treats'
               fill
-              className='object-cover'
+              className='object-cover object-top'
             />
           </div>
         </div>

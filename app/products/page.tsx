@@ -5,6 +5,7 @@ import { Header } from '@/components/header';
 import { ProductCard } from '@/components/product-card';
 import { ProductFilters } from '@/components/product-filters';
 import { products } from '@/lib/products';
+import Footer from '@/components/footer';
 
 export default function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -64,6 +65,7 @@ export default function ProductsPage() {
           )}
         </div>
       </main>
+      <Footer />
     </div>
   );
 }

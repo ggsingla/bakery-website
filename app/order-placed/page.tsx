@@ -11,6 +11,7 @@ import { CheckCircle, Home, ShoppingBag, Clock, Phone } from 'lucide-react';
 import { getProductById } from '@/lib/products';
 import type { Product } from '@/lib/types';
 import { company } from '@/constants/company';
+import Footer from '@/components/footer';
 
 function OrderPlacedContent() {
   const searchParams = useSearchParams();
@@ -46,6 +47,7 @@ function OrderPlacedContent() {
             </div>
           </div>
         </main>
+        <Footer />
       </div>
     );
   }
@@ -202,6 +204,7 @@ function OrderPlacedContent() {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   );
 }

@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { ProductCard } from '@/components/product-card';
 import { BuyNowDialog } from '@/components/buy-now-dialog';
 import { getProductById, getRecommendedProducts } from '@/lib/products';
+import Footer from '@/components/footer';
 
 interface ProductPageProps {
   params: { id: string };
@@ -110,7 +111,7 @@ export default function ProductPage({ params }: ProductPageProps) {
 
               {product.weight && (
                 <p className='text-muted-foreground mt-4'>
-                  Weight: {product.weight}
+                  Unit: {product.weight}
                 </p>
               )}
 
@@ -148,6 +149,7 @@ export default function ProductPage({ params }: ProductPageProps) {
         open={isDialogOpen}
         onOpenChange={setIsDialogOpen}
       />
+      <Footer />
     </div>
   );
 }

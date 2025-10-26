@@ -12,6 +12,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { FileInput } from '@/components/ui/file-input';
+import Footer from '@/components/footer';
 
 export default function ContactPage() {
   return (
@@ -203,6 +204,7 @@ export default function ContactPage() {
           </Card>
         </div>
       </main>
+      <Footer />
     </div>
   );
 }

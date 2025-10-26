@@ -14,6 +14,7 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
 import Image from 'next/image';
+import Footer from '@/components/footer';
 
 // Get all available images from the products folder only
 const getAllImages = (): string[] => {
@@ -758,6 +759,7 @@ export default function AdminPage() {
         </div>
 
       </div>
+      <Footer />
     </div>
   );
 }

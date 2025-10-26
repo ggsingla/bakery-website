@@ -3,6 +3,7 @@ import { Header } from '@/components/header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { CheckCircle, Home } from 'lucide-react';
+import Footer from '@/components/footer';
 
 export default function ThanksPage() {
   return (
@@ -46,6 +47,7 @@ export default function ThanksPage() {
           </Card>
         </div>
       </main>
+      <Footer />
     </div>
   );
 }
