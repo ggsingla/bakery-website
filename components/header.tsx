@@ -8,6 +8,11 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,9 +28,16 @@ export function Header() {
               Cake Paradise
             </span>
             <div className='flex items-center space-x-2'>
-              <div className='w-4 h-4 bg-white border-2 border-green-600 flex items-center justify-center'>
-                <div className='w-2 h-2 bg-green-600 rounded-full'></div>
-              </div>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <div className='w-4 h-4 border-2 border-green-600 rounded-[4px] flex items-center justify-center cursor-pointer'>
+                    <div className='w-2 h-2 bg-green-600 rounded-full'></div>
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>100% veg</p>
+                </TooltipContent>
+              </Tooltip>
             </div>
           </Link>
 
