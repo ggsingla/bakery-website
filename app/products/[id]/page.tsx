@@ -4,12 +4,10 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { Header } from '@/components/header';
 import { Button } from '@/components/ui/button';
 import { ProductCard } from '@/components/product-card';
 import { BuyNowDialog } from '@/components/buy-now-dialog';
 import { getProductById, getRecommendedProducts } from '@/lib/products';
-import Footer from '@/components/footer';
 
 interface ProductPageProps {
   params: { id: string };
@@ -27,8 +25,7 @@ export default function ProductPage({ params }: ProductPageProps) {
   const recommended = getRecommendedProducts(product.id, 4);
 
   return (
-    <div className='min-h-screen bg-background'>
-      <Header />
+    <>
       <main
         className='container mx-auto px-4 sm:px-6 lg:px-8 py-12'
         data-aos='fade-up'
@@ -151,7 +148,6 @@ export default function ProductPage({ params }: ProductPageProps) {
         open={isDialogOpen}
         onOpenChange={setIsDialogOpen}
       />
-      <Footer />
-    </div>
+    </>
   );
 }

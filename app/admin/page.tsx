@@ -14,7 +14,6 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
 import Image from 'next/image';
-import Footer from '@/components/footer';
 
 // Get all available images from the products folder only
 const getAllImages = (): string[] => {
@@ -243,7 +242,7 @@ export default function AdminPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-3 sm:p-6">
+    <div className="bg-gray-50 p-3 sm:p-6">
       <div className="max-w-7xl mx-auto">
         <div className="mb-6 sm:mb-8">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -760,7 +759,6 @@ export default function AdminPage() {
         </div>
 
       </div>
-      <Footer />
     </div>
   );
 }

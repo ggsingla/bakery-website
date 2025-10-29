@@ -1,11 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { Header } from '@/components/header';
 import { ProductCard } from '@/components/product-card';
 import { Button } from '@/components/ui/button';
 import { getFeaturedProducts } from '@/lib/products';
-import Footer from '@/components/footer';
 import About from './_components/About';
 import Hero from './_components/Hero';
 
@@ -13,8 +11,7 @@ export default function HomePage() {
   const featuredProducts = getFeaturedProducts().slice(0, 4);
 
   return (
-    <div className='min-h-screen bg-background'>
-      <Header />
+    <>
       <Hero />
 
       <section
@@ -51,7 +48,6 @@ export default function HomePage() {
         </div>
       </section>
       <About />
-      <Footer />
-    </div>
+    </>
   );
 }

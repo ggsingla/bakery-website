@@ -4,6 +4,8 @@ import { Inter, Playfair_Display } from 'next/font/google';
 import './globals.css';
 import { AOSProvider } from '@/components/aos-provider';
 import { Toaster } from '@/components/ui/toaster';
+import { Header } from '@/components/header';
+import Footer from '@/components/footer';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -32,7 +34,11 @@ export default function RootLayout({
     <html lang='en' className={`${inter.variable} ${playfair.variable}`}>
       <body>
         <AOSProvider />
-        {children}
+        <div className='min-h-screen bg-background'>
+          <Header />
+          {children}
+          <Footer />
+        </div>
         <Toaster />
       </body>
     </html>
