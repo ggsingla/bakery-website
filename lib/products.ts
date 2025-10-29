@@ -20,7 +20,7 @@ export const products: Product[] = [
       'Rasmalai',
       'Customized',
     ],
-    flavors: ['Vanilla', 'Strawberry', 'Chocolate', 'Strawberry'],
+    flavors: ['Vanilla', 'Strawberry', 'Chocolate'],
     weight: '1.5 Kg',
     featured: true,
   },
