@@ -1,8 +1,18 @@
 'use client';
 
 import Link from 'next/link';
+import { Menu } from 'lucide-react';
+import { useState } from 'react';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 
 export function Header() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const closePopover = () => setIsOpen(false);
 
   return (
     <header className='border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50'>
@@ -19,6 +29,7 @@ export function Header() {
             </div>
           </Link>
 
+          {/* Desktop Navigation */}
           <nav className='hidden md:flex items-center space-x-8'>
             <Link
               href='/'
@@ -46,6 +57,42 @@ export function Header() {
             </Link>
           </nav>
 
+          {/* Mobile Navigation */}
+          <div className='md:hidden'>
+            <Popover open={isOpen} onOpenChange={setIsOpen}>
+              <PopoverTrigger asChild>
+                <button className='p-2 text-muted-foreground hover:text-foreground transition-colors'>
+                  <Menu className='h-5 w-5' />
+                  <span className='sr-only'>Open menu</span>
+                </button>
+              </PopoverTrigger>
+              <PopoverContent className='w-48 p-2' align='end'>
+                <nav className='flex flex-col space-y-1'>
+                  <Link
+                    href='/'
+                    onClick={closePopover}
+                    className='flex items-center px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-muted'
+                  >
+                    Home
+                  </Link>
+                  <Link
+                    href='/products'
+                    onClick={closePopover}
+                    className='flex items-center px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-muted'
+                  >
+                    Products
+                  </Link>
+                  <Link
+                    href='/contact'
+                    onClick={closePopover}
+                    className='flex items-center px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-muted'
+                  >
+                    Contact
+                  </Link>
+                </nav>
+              </PopoverContent>
+            </Popover>
+          </div>
         </div>
       </div>
     </header>
