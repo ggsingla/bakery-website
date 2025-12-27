@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, use } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -10,11 +10,11 @@ import { BuyNowDialog } from '@/components/buy-now-dialog';
 import { getProductById, getRecommendedProducts } from '@/lib/products';
 
 interface ProductPageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export default function ProductPage({ params }: ProductPageProps) {
-  const { id } = params;
+  const { id } = use(params);
   const product = getProductById(id);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
