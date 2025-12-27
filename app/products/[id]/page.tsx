@@ -80,7 +80,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                 </span>
               </p>
 
-              <div className="grid gap-2 grid-cols-1 md:grid-cols-2">
+              <div className='grid gap-2 grid-cols-1 md:grid-cols-2'>
                 {product.ingredients && product.ingredients.length > 0 && (
                   <div className='mt-6'>
                     <h2 className='font-semibold text-foreground mb-2'>

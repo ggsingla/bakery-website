@@ -114,9 +114,7 @@ export default function ContactPage() {
                     <SelectItem value='eid'>Eid</SelectItem>
                     <SelectItem value='corporate'>Corporate Event</SelectItem>
                     <SelectItem value='baby-shower'>Baby Shower</SelectItem>
-                    <SelectItem value='bridal-shower'>
-                      Bridal Shower
-                    </SelectItem>
+                    <SelectItem value='bridal-shower'>Bridal Shower</SelectItem>
                     <SelectItem value='farewell'>Farewell</SelectItem>
                     <SelectItem value='get-well'>Get Well Soon</SelectItem>
                     <SelectItem value='thank-you'>Thank You</SelectItem>

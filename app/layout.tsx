@@ -1,5 +1,5 @@
 import type React from 'react';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter, Fraunces } from 'next/font/google';
 import './globals.css';
 import { AOSProvider } from '@/components/aos-provider';
@@ -13,11 +13,6 @@ const inter = Inter({
   display: 'swap',
 });
 
-// const playfair = Playfair_Display({
-//   subsets: ['latin'],
-//   variable: '--font-serif',
-//   display: 'swap',
-// });
 const fraunces = Fraunces({
   subsets: ['latin'],
   variable: '--font-serif',
@@ -28,7 +23,10 @@ export const metadata: Metadata = {
   title: 'Cake Paradise - Handcrafted Cakes, Biscuits & More',
   description:
     'Discover our selection of handcrafted cakes, biscuits, muffins, and chocolate treats. Made fresh daily with premium ingredients.',
-  themeColor: "#b07850"
+};
+
+export const viewport: Viewport = {
+  themeColor: '#b07850',
 };
 
 export default function RootLayout({

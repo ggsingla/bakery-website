@@ -53,7 +53,11 @@ function OrderPlacedContent() {
     >
       <div className='max-w-4xl mx-auto'>
         {/* Success Message */}
-        <div className='text-center mb-8' data-aos='fade-up' data-aos-delay='100'>
+        <div
+          className='text-center mb-8'
+          data-aos='fade-up'
+          data-aos-delay='100'
+        >
           <CheckCircle className='h-16 w-16 text-green-500 mx-auto mb-4' />
           <h1 className='text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-foreground mb-4'>
             Order Placed Successfully!
@@ -64,13 +68,18 @@ function OrderPlacedContent() {
             </p>
           )}
           <p className='text-base text-muted-foreground mb-8'>
-            We'll contact you shortly to confirm your order details and arrange delivery.
+            We'll contact you shortly to confirm your order details and arrange
+            delivery.
           </p>
         </div>
 
         {/* Product Details */}
         {product && (
-          <Card className='border-border mb-8' data-aos='fade-up' data-aos-delay='200'>
+          <Card
+            className='border-border mb-8'
+            data-aos='fade-up'
+            data-aos-delay='200'
+          >
             <CardContent className='p-6'>
               <h2 className='text-xl font-semibold text-foreground mb-4'>
                 Your Order Details
@@ -118,7 +127,11 @@ function OrderPlacedContent() {
         )}
 
         {/* What Happens Next */}
-        <Card className='border-border mb-8' data-aos='fade-up' data-aos-delay='300'>
+        <Card
+          className='border-border mb-8'
+          data-aos='fade-up'
+          data-aos-delay='300'
+        >
           <CardContent className='p-6'>
             <h2 className='text-xl font-semibold text-foreground mb-4 flex items-center'>
               <Clock className='h-5 w-5 mr-2' />
@@ -130,9 +143,12 @@ function OrderPlacedContent() {
                   1
                 </div>
                 <div>
-                  <p className='font-medium text-foreground'>Order Confirmation</p>
+                  <p className='font-medium text-foreground'>
+                    Order Confirmation
+                  </p>
                   <p className='text-sm text-muted-foreground'>
-                    We'll review your order and contact you within 2-4 hours to confirm details.
+                    We'll review your order and contact you within 2-4 hours to
+                    confirm details.
                   </p>
                 </div>
               </div>
@@ -141,9 +157,12 @@ function OrderPlacedContent() {
                   2
                 </div>
                 <div>
-                  <p className='font-medium text-foreground'>Preparation & Delivery</p>
+                  <p className='font-medium text-foreground'>
+                    Preparation & Delivery
+                  </p>
                   <p className='text-sm text-muted-foreground'>
-                    We'll prepare your order fresh and arrange delivery at your preferred time.
+                    We'll prepare your order fresh and arrange delivery at your
+                    preferred time.
                   </p>
                 </div>
               </div>
@@ -152,9 +171,12 @@ function OrderPlacedContent() {
                   3
                 </div>
                 <div>
-                  <p className='font-medium text-foreground'>Enjoy Your Treat!</p>
+                  <p className='font-medium text-foreground'>
+                    Enjoy Your Treat!
+                  </p>
                   <p className='text-sm text-muted-foreground'>
-                    Receive your delicious order and enjoy the perfect treat for your occasion.
+                    Receive your delicious order and enjoy the perfect treat for
+                    your occasion.
                   </p>
                 </div>
               </div>
@@ -163,25 +185,40 @@ function OrderPlacedContent() {
         </Card>
 
         {/* Contact Information */}
-        <Card className='border-border mb-8' data-aos='fade-up' data-aos-delay='400'>
+        <Card
+          className='border-border mb-8'
+          data-aos='fade-up'
+          data-aos-delay='400'
+        >
           <CardContent className='p-6'>
             <h2 className='text-xl font-semibold text-foreground mb-4 flex items-center'>
               <Phone className='h-5 w-5 mr-2' />
               Need Help?
             </h2>
             <p className='text-muted-foreground mb-4'>
-              If you have any questions about your order, feel free to contact us:
+              If you have any questions about your order, feel free to contact
+              us:
             </p>
             <div className='space-y-2 text-sm'>
-              <p><strong>Phone:</strong> {company.phone}</p>
-              <p><strong>Email:</strong> {company.email}</p>
-              <p><strong>Response Time:</strong> Usually within 2-4 hours</p>
+              <p>
+                <strong>Phone:</strong> {company.phone}
+              </p>
+              <p>
+                <strong>Email:</strong> {company.email}
+              </p>
+              <p>
+                <strong>Response Time:</strong> Usually within 2-4 hours
+              </p>
             </div>
           </CardContent>
         </Card>
 
         {/* Action Buttons */}
-        <div className='flex flex-col sm:flex-row gap-4 justify-center' data-aos='fade-up' data-aos-delay='500'>
+        <div
+          className='flex flex-col sm:flex-row gap-4 justify-center'
+          data-aos='fade-up'
+          data-aos-delay='500'
+        >
           <Link href='/products'>
             <Button size='lg' variant='outline' className='w-full sm:w-auto'>
               <ShoppingBag className='mr-2 h-5 w-5' />
@@ -202,16 +239,20 @@ function OrderPlacedContent() {
 
 export default function OrderPlacedPage() {
   return (
-    <Suspense fallback={
-      <main className='container mx-auto px-4 sm:px-6 lg:px-8 py-12'>
-        <div className='max-w-4xl mx-auto'>
-          <div className='text-center'>
-            <div className='animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto'></div>
-            <p className='mt-4 text-muted-foreground'>Loading your order...</p>
+    <Suspense
+      fallback={
+        <main className='container mx-auto px-4 sm:px-6 lg:px-8 py-12'>
+          <div className='max-w-4xl mx-auto'>
+            <div className='text-center'>
+              <div className='animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto'></div>
+              <p className='mt-4 text-muted-foreground'>
+                Loading your order...
+              </p>
+            </div>
           </div>
-        </div>
-      </main>
-    }>
+        </main>
+      }
+    >
       <OrderPlacedContent />
     </Suspense>
   );

@@ -15,7 +15,6 @@ interface ProductCardProps {
 export function ProductCard({ product }: ProductCardProps) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-
   return (
     <>
       <Card

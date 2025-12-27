@@ -22,16 +22,12 @@ export default function ThanksPage() {
                 soon!
               </p>
               <p className='text-sm text-muted-foreground mb-8'>
-                We appreciate your interest in Cake Paradise and look forward
-                to serving you.
+                We appreciate your interest in Cake Paradise and look forward to
+                serving you.
               </p>
             </div>
 
-            <div
-              className='space-y-4'
-              data-aos='fade-up'
-              data-aos-delay='200'
-            >
+            <div className='space-y-4' data-aos='fade-up' data-aos-delay='200'>
               <Link href='/'>
                 <Button size='lg'>
                   <Home className='mr-2 h-5 w-5' />

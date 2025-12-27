@@ -27,7 +27,11 @@ const Hero = () => {
               </p>
             </div>
 
-            <div className='flex flex-col sm:flex-row gap-4' data-aos='fade-up' data-aos-delay='200'>
+            <div
+              className='flex flex-col sm:flex-row gap-4'
+              data-aos='fade-up'
+              data-aos-delay='200'
+            >
               <Link href='/products'>
                 <Button size='lg' className='w-full sm:w-auto'>
                   Explore Our Products
@@ -35,7 +39,11 @@ const Hero = () => {
                 </Button>
               </Link>
               <Link href='/contact'>
-                <Button variant='outline' size='lg' className='w-full sm:w-auto'>
+                <Button
+                  variant='outline'
+                  size='lg'
+                  className='w-full sm:w-auto'
+                >
                   Contact Us
                 </Button>
               </Link>
@@ -43,7 +51,11 @@ const Hero = () => {
           </div>
 
           {/* Image Side */}
-          <div className='relative order-1 lg:order-2' data-aos='fade-left' data-aos-delay='100'>
+          <div
+            className='relative order-1 lg:order-2'
+            data-aos='fade-left'
+            data-aos-delay='100'
+          >
             <div className='relative h-[500px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl'>
               <Image
                 src='/table-top-view.webp'
