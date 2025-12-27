@@ -49,7 +49,7 @@ export function BuyNowDialog({
         {/* Product Display */}
         <div className='border rounded-lg p-4 bg-muted/50'>
           <div className='flex items-center space-x-4'>
-            <div className='aspect-square w-20 h-20 bg-muted overflow-hidden rounded-md flex-shrink-0'>
+            <div className='aspect-square w-20 h-20 bg-muted overflow-hidden rounded-md shrink-0'>
               <Image
                 src={product.image || '/placeholder.svg'}
                 alt={product.name}
@@ -220,8 +220,8 @@ export function BuyNowDialog({
 
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
-      <DrawerContent className='max-h-[85vh] flex flex-col'>
-        <DrawerHeader className='text-left flex-shrink-0'>
+      <DrawerContent className='max-h-[85dvh] flex flex-col'>
+        <DrawerHeader className='text-left shrink-0'>
           <DrawerTitle>Order {product.name}</DrawerTitle>
           <DrawerDescription>
             Fill in your details to place your order. We'll contact you shortly
@@ -230,12 +230,17 @@ export function BuyNowDialog({
         </DrawerHeader>
 
         {/* Scrollable content area */}
-        <div className='flex-1 overflow-y-auto px-4'>
+        <div className='flex-1 overflow-y-auto px-4 min-h-0'>
           <OrderForm className='pb-4' showButtons={false} />
         </div>
 
         {/* Fixed footer with buttons */}
-        <DrawerFooter className='flex-shrink-0 bg-background border-t pt-4'>
+        <DrawerFooter
+          className='shrink-0 bg-background border-t pt-4 pb-4'
+          style={{
+            paddingBottom: 'max(1rem, env(safe-area-inset-bottom))',
+          }}
+        >
           <div className='grid grid-cols-1 gap-3'>
             <Button type='submit' form='order-form' className='w-full'>
               Place Order
