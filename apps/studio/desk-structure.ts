@@ -1,7 +1,7 @@
 import type { StructureBuilder } from 'sanity/structure';
 
 // Singletons are documents that should only have one instance
-const singletonTypes = new Set(['companyInfo', 'homePage', 'aboutSection']);
+const singletonTypes = new Set(['companyInfo', 'heroSection']);
 
 const singletonListItem = (
   S: StructureBuilder,
@@ -25,8 +25,7 @@ export const structure = (S: StructureBuilder) =>
 
       // Singletons
       singletonListItem(S, 'companyInfo', 'Company Info'),
-      singletonListItem(S, 'homePage', 'Home Page'),
-      singletonListItem(S, 'aboutSection', 'About Section'),
+      singletonListItem(S, 'heroSection', 'Hero Section'),
     ]);
 
 // Filter singletons from the "new document" menu

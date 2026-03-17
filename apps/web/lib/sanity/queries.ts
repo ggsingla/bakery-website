@@ -3,8 +3,7 @@ import type {
   SanityProduct,
   SanityCategory,
   SanityCompanyInfo,
-  SanityHomePage,
-  SanityAboutSection,
+  SanityHeroSection,
 } from './types';
 
 const productFields = `
@@ -77,17 +76,9 @@ export async function getCompanyInfo(): Promise<SanityCompanyInfo> {
   );
 }
 
-export async function getHomePage(): Promise<SanityHomePage> {
+export async function getHeroSection(): Promise<SanityHeroSection> {
   return client.fetch(
-    `*[_type == "homePage"][0]`,
-    {},
-    { next: { revalidate: 60 } }
-  );
-}
-
-export async function getAboutSection(): Promise<SanityAboutSection> {
-  return client.fetch(
-    `*[_type == "aboutSection"][0]`,
+    `*[_type == "heroSection"][0]`,
     {},
     { next: { revalidate: 60 } }
   );

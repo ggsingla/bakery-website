@@ -2,6 +2,5 @@ export type {
   SanityProduct as Product,
   SanityCategory as Category,
   SanityCompanyInfo as CompanyInfo,
-  SanityHomePage as HomePage,
-  SanityAboutSection as AboutSection,
+  SanityHeroSection as HeroSection,
 } from './sanity/types';

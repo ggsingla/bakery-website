@@ -6,6 +6,7 @@
     "dev": "sanity dev",
     "build": "sanity build",
     "deploy": "sanity deploy",
+    "login": "sanity login",
     "start": "sanity start"
   },
   "dependencies": {

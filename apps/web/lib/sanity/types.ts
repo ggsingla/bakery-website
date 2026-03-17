@@ -34,21 +34,11 @@ export interface SanityCompanyInfo {
   zip?: string;
 }
 
-export interface SanityHomePage {
+export interface SanityHeroSection {
   _id: string;
-  badgeText?: string;
   tagline: string;
   description?: string;
   ctaPrimaryText?: string;
   ctaSecondaryText?: string;
   heroImage?: SanityImageSource;
-  featuredHeading?: string;
-  featuredSubheading?: string;
-}
-
-export interface SanityAboutSection {
-  _id: string;
-  heading: string;
-  paragraphs?: string[];
-  image?: SanityImageSource;
 }

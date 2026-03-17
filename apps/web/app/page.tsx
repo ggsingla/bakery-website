@@ -1,24 +1,19 @@
 import Link from 'next/link';
 import { ProductCard } from '@/components/product-card';
 import { Button } from '@/components/ui/button';
-import {
-  getFeaturedProducts,
-  getHomePage,
-  getAboutSection,
-} from '@/lib/sanity/queries';
+import { getFeaturedProducts, getHeroSection } from '@/lib/sanity/queries';
 import About from './_components/About';
 import Hero from './_components/Hero';
 
 export default async function HomePage() {
-  const [featuredProducts, homePageData, aboutData] = await Promise.all([
+  const [featuredProducts, heroData] = await Promise.all([
     getFeaturedProducts(),
-    getHomePage(),
-    getAboutSection(),
+    getHeroSection(),
   ]);
 
   return (
     <>
-      {homePageData && <Hero data={homePageData} />}
+      {heroData && <Hero data={heroData} />}
 
       <section
         className='py-20 px-4 sm:px-6 lg:px-8'
@@ -28,11 +23,10 @@ export default async function HomePage() {
         <div className='container mx-auto max-w-7xl'>
           <div className='text-center mb-12'>
             <h2 className='text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-foreground mb-4'>
-              {homePageData?.featuredHeading || 'Featured Products'}
+              Featured Products
             </h2>
             <p className='text-lg text-muted-foreground max-w-2xl mx-auto'>
-              {homePageData?.featuredSubheading ||
-                'Our most popular items, loved by customers'}
+              Our most popular items, loved by customers
             </p>
           </div>
 
@@ -51,7 +45,7 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
-      {aboutData && <About data={aboutData} />}
+      <About />
     </>
   );
 }

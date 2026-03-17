@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, CheckCircle } from 'lucide-react';
-import type { HomePage } from '@/lib/types';
+import { ArrowRight } from 'lucide-react';
+import type { HeroSection } from '@/lib/types';
 import { urlFor } from '@/lib/sanity/image';
 
 interface HeroProps {
-  data: HomePage;
+  data: HeroSection;
 }
 
 const Hero = ({ data }: HeroProps) => {
@@ -16,13 +16,6 @@ const Hero = ({ data }: HeroProps) => {
         <div className='grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]'>
           {/* Content Side */}
           <div className='space-y-8 order-2 lg:order-1' data-aos='fade-right'>
-            {data.badgeText && (
-              <div className='inline-flex items-center space-x-1 bg-green-50 border border-green-200 text-green-800 px-3 py-1.5 rounded-full text-sm font-medium'>
-                <CheckCircle className='w-4 h-4' />
-                <span>{data.badgeText}</span>
-              </div>
-            )}
-
             <div className='space-y-6'>
               <h1 className='text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground leading-none'>
                 {data.tagline}
