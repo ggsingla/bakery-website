@@ -1,30 +1,37 @@
-'use client';
-
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, CheckCircle } from 'lucide-react';
+import type { HomePage } from '@/lib/types';
+import { urlFor } from '@/lib/sanity/image';
 
-const Hero = () => {
+interface HeroProps {
+  data: HomePage;
+}
+
+const Hero = ({ data }: HeroProps) => {
   return (
     <section className='min-h-screen bg-background'>
       <div className='container mx-auto px-4 sm:px-6 lg:px-8 py-12'>
         <div className='grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]'>
           {/* Content Side */}
           <div className='space-y-8 order-2 lg:order-1' data-aos='fade-right'>
-            <div className='inline-flex items-center space-x-1 bg-green-50 border border-green-200 text-green-800 px-3 py-1.5 rounded-full text-sm font-medium'>
-              <CheckCircle className='w-4 h-4' />
-              <span>100% Vegetarian</span>
-            </div>
+            {data.badgeText && (
+              <div className='inline-flex items-center space-x-1 bg-green-50 border border-green-200 text-green-800 px-3 py-1.5 rounded-full text-sm font-medium'>
+                <CheckCircle className='w-4 h-4' />
+                <span>{data.badgeText}</span>
+              </div>
+            )}
 
             <div className='space-y-6'>
               <h1 className='text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground leading-none'>
-                Handcrafted with love, baked to perfection
+                {data.tagline}
               </h1>
-              <p className='text-lg md:text-xl text-muted-foreground leading-relaxed max-w-lg'>
-                Discover our selection of artisan cakes, biscuits, muffins, and
-                chocolate treats made fresh daily with premium ingredients.
-              </p>
+              {data.description && (
+                <p className='text-lg md:text-xl text-muted-foreground leading-relaxed max-w-lg'>
+                  {data.description}
+                </p>
+              )}
             </div>
 
             <div
@@ -34,7 +41,7 @@ const Hero = () => {
             >
               <Link href='/products'>
                 <Button size='lg' className='w-full sm:w-auto'>
-                  Explore Our Products
+                  {data.ctaPrimaryText || 'Explore Our Products'}
                   <ArrowRight className='ml-2 h-5 w-5' />
                 </Button>
               </Link>
@@ -44,7 +51,7 @@ const Hero = () => {
                   size='lg'
                   className='w-full sm:w-auto'
                 >
-                  Contact Us
+                  {data.ctaSecondaryText || 'Contact Us'}
                 </Button>
               </Link>
             </div>
@@ -58,7 +65,11 @@ const Hero = () => {
           >
             <div className='relative h-[500px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl'>
               <Image
-                src='/table-top-view.webp'
+                src={
+                  data.heroImage
+                    ? urlFor(data.heroImage).width(800).height(600).url()
+                    : '/table-top-view.webp'
+                }
                 alt='Cake Paradise products on table'
                 fill
                 className='object-cover'

@@ -1,37 +1,37 @@
 import Image from 'next/image';
 import React from 'react';
+import type { AboutSection } from '@/lib/types';
+import { urlFor } from '@/lib/sanity/image';
 
-const About = () => {
+interface AboutProps {
+  data: AboutSection;
+}
+
+const About = ({ data }: AboutProps) => {
   return (
     <section className='py-20 px-4 sm:px-6 lg:px-8 bg-muted/30'>
       <div className='container max-w-7xl mx-auto'>
         <div className='grid md:grid-cols-2 gap-12 items-center'>
           <div>
             <h2 className='text-3xl md:text-4xl font-serif font-bold text-foreground mb-6'>
-              Baked fresh daily with 100% vegetarian ingredients
+              {data.heading}
             </h2>
-            <p className='text-muted-foreground mb-4 leading-relaxed'>
-              At Cake Paradise, we believe in the art of traditional baking with
-              a modern twist. Every product is handcrafted with care using only
-              the finest vegetarian ingredients sourced from trusted suppliers,
-              ensuring every bite is pure and wholesome.
-            </p>
-            <p className='text-muted-foreground mb-4 leading-relaxed'>
-              Our commitment to 100% vegetarian products means you can enjoy our
-              delicious treats without any compromise on taste or quality. From
-              our rich chocolate cakes to our delicate biscuits, each item is
-              crafted with plant-based ingredients that deliver exceptional
-              flavor and texture.
-            </p>
-            <p className='text-muted-foreground mb-6 leading-relaxed'>
-              Every creation tells a story of passion, quality, and dedication
-              to the craft of baking, while staying true to our values of
-              providing pure, vegetarian delights for everyone to enjoy.
-            </p>
+            {data.paragraphs?.map((paragraph, index) => (
+              <p
+                key={index}
+                className='text-muted-foreground mb-4 leading-relaxed'
+              >
+                {paragraph}
+              </p>
+            ))}
           </div>
           <div className='relative h-[500px] md:h-[500px] rounded-lg overflow-hidden'>
             <Image
-              src='/bakery-view.webp'
+              src={
+                data.image
+                  ? urlFor(data.image).width(800).height(500).url()
+                  : '/bakery-view.webp'
+              }
               alt='Our artisan baker crafting fresh vegetarian treats'
               fill
               className='object-cover object-top'

@@ -1,28 +1,38 @@
-'use client';
-
-import { useState, use } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { ProductCard } from '@/components/product-card';
-import { BuyNowDialog } from '@/components/buy-now-dialog';
-import { getProductById, getRecommendedProducts } from '@/lib/products';
+import {
+  getProductBySlug,
+  getRecommendedProducts,
+  getAllProductSlugs,
+} from '@/lib/sanity/queries';
+import { urlFor } from '@/lib/sanity/image';
+import { ProductDetailClient } from './product-detail-client';
 
 interface ProductPageProps {
-  params: Promise<{ id: string }>;
+  params: Promise<{ slug: string }>;
 }
 
-export default function ProductPage({ params }: ProductPageProps) {
-  const { id } = use(params);
-  const product = getProductById(id);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+export async function generateStaticParams() {
+  const slugs = await getAllProductSlugs();
+  return slugs.map(slug => ({ slug }));
+}
+
+export default async function ProductPage({ params }: ProductPageProps) {
+  const { slug } = await params;
+  const product = await getProductBySlug(slug);
 
   if (!product) {
     notFound();
   }
 
-  const recommended = getRecommendedProducts(product.id, 4);
+  const recommended = await getRecommendedProducts(
+    slug,
+    product.category?.slug.current || '',
+    4
+  );
 
   return (
     <>
@@ -36,7 +46,14 @@ export default function ProductPage({ params }: ProductPageProps) {
               <div className='aspect-square bg-muted overflow-hidden rounded-md'>
                 <Image
                   src={
-                    product.images?.[0] || product.image || '/placeholder.svg'
+                    product.gallery?.[0]
+                      ? urlFor(product.gallery[0]).width(800).height(800).url()
+                      : product.mainImage
+                        ? urlFor(product.mainImage)
+                            .width(800)
+                            .height(800)
+                            .url()
+                        : '/placeholder.svg'
                   }
                   alt={product.name}
                   width={800}
@@ -45,15 +62,15 @@ export default function ProductPage({ params }: ProductPageProps) {
                   unoptimized
                 />
               </div>
-              {product.images && product.images.length > 1 && (
+              {product.gallery && product.gallery.length > 1 && (
                 <div className='grid grid-cols-4 gap-3 mt-3'>
-                  {product.images.slice(1, 5).map((img, idx) => (
+                  {product.gallery.slice(1, 5).map((img, idx) => (
                     <div
                       key={idx}
                       className='aspect-square bg-muted overflow-hidden rounded'
                     >
                       <Image
-                        src={img}
+                        src={urlFor(img).width(200).height(200).url()}
                         alt={`${product.name} ${idx + 2}`}
                         width={200}
                         height={200}
@@ -75,9 +92,11 @@ export default function ProductPage({ params }: ProductPageProps) {
               </p>
               <p className='text-3xl font-sans font-semibold text-foreground mt-6'>
                 ₹ {product.price.toFixed(2)}{' '}
-                <span className='text-sm text-muted-foreground'>
-                  / {product.weight}
-                </span>
+                {product.weight && (
+                  <span className='text-sm text-muted-foreground'>
+                    / {product.weight}
+                  </span>
+                )}
               </p>
 
               <div className='grid gap-2 grid-cols-1 md:grid-cols-2'>
@@ -118,12 +137,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                 <Link href='/products'>
                   <Button variant='outline'>Back to products</Button>
                 </Link>
-                <Button
-                  onClick={() => setIsDialogOpen(true)}
-                  className='bg-primary text-primary-foreground hover:bg-primary/90'
-                >
-                  Buy Now
-                </Button>
+                <ProductDetailClient product={product} />
               </div>
             </div>
           </div>
@@ -135,19 +149,13 @@ export default function ProductPage({ params }: ProductPageProps) {
               </h2>
               <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6'>
                 {recommended.map(item => (
-                  <ProductCard key={item.id} product={item} />
+                  <ProductCard key={item._id} product={item} />
                 ))}
               </div>
             </div>
           )}
         </div>
       </main>
-
-      <BuyNowDialog
-        product={product}
-        open={isDialogOpen}
-        onOpenChange={setIsDialogOpen}
-      />
     </>
   );
 }

@@ -6,6 +6,7 @@ import { AOSProvider } from '@/components/aos-provider';
 import { Toaster } from '@/components/ui/toaster';
 import { Header } from '@/components/header';
 import Footer from '@/components/footer';
+import { getCompanyInfo } from '@/lib/sanity/queries';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -29,11 +30,13 @@ export const viewport: Viewport = {
   themeColor: '#CA7762',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const companyInfo = await getCompanyInfo();
+
   return (
     <html lang='en' className={`${inter.variable} ${fraunces.variable}`}>
       <body>
@@ -41,7 +44,7 @@ export default function RootLayout({
         <div className='min-h-screen bg-background'>
           <Header />
           {children}
-          <Footer />
+          <Footer companyInfo={companyInfo} />
         </div>
         <Toaster />
       </body>

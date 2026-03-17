@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Product } from '@/lib/types';
+import { urlFor } from '@/lib/sanity/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { BuyNowDialog } from '@/components/buy-now-dialog';
@@ -21,10 +22,14 @@ export function ProductCard({ product }: ProductCardProps) {
         className='group overflow-hidden border-border hover:shadow-lg transition-shadow duration-300 py-0'
         data-aos='fade-up'
       >
-        <Link href={`/products/${product.id}`}>
+        <Link href={`/products/${product.slug.current}`}>
           <div className='aspect-square overflow-hidden bg-muted'>
             <Image
-              src={product.image || '/placeholder.svg'}
+              src={
+                product.mainImage
+                  ? urlFor(product.mainImage).width(400).height(400).url()
+                  : '/placeholder.svg'
+              }
               alt={product.name}
               width={400}
               height={400}
@@ -34,7 +39,7 @@ export function ProductCard({ product }: ProductCardProps) {
           </div>
         </Link>
         <CardContent className='p-6'>
-          <Link href={`/products/${product.id}`}>
+          <Link href={`/products/${product.slug.current}`}>
             <h3 className='font-serif text-xl mb-2 text-foreground group-hover:text-primary transition-colors line-clamp-2'>
               {product.name}
             </h3>

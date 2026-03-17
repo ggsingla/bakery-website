@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import type { Product } from '@/lib/types';
+import { urlFor } from '@/lib/sanity/image';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -51,7 +52,11 @@ export function BuyNowDialog({
           <div className='flex items-center space-x-4'>
             <div className='aspect-square w-20 h-20 bg-muted overflow-hidden rounded-md shrink-0'>
               <Image
-                src={product.image || '/placeholder.svg'}
+                src={
+                  product.mainImage
+                    ? urlFor(product.mainImage).width(80).height(80).url()
+                    : '/placeholder.svg'
+                }
                 alt={product.name}
                 width={80}
                 height={80}
@@ -144,11 +149,15 @@ export function BuyNowDialog({
             name='product_weight'
             value={product.weight || ''}
           />
-          <input type='hidden' name='product_id' value={product.id} />
+          <input
+            type='hidden'
+            name='product_id'
+            value={product.slug.current}
+          />
           <input
             type='hidden'
             name='product_url'
-            value={`${process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/products/${product.id}`}
+            value={`${process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/products/${product.slug.current}`}
           />
           <input
             type='hidden'
@@ -167,7 +176,7 @@ export function BuyNowDialog({
           <input
             type='hidden'
             name='_next'
-            value={`${process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/order-placed?product=${product.id}`}
+            value={`${process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/order-placed?product=${product.slug.current}`}
           />
           <input
             type='hidden'

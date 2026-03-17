@@ -1,29 +1,38 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { getAvailableCategories } from '@/lib/products';
+import type { Category } from '@/lib/types';
 
 interface ProductFiltersProps {
+  categories: Category[];
   selectedCategory: string;
   onCategoryChange: (category: string) => void;
 }
 
 export function ProductFilters({
+  categories,
   selectedCategory,
   onCategoryChange,
 }: ProductFiltersProps) {
-  const categories = getAvailableCategories();
-
   return (
     <div className='flex flex-wrap gap-2 mb-8'>
+      <Button
+        variant={selectedCategory === 'all' ? 'default' : 'outline'}
+        onClick={() => onCategoryChange('all')}
+        className='rounded-full'
+      >
+        All Products
+      </Button>
       {categories.map(category => (
         <Button
-          key={category.value}
-          variant={selectedCategory === category.value ? 'default' : 'outline'}
-          onClick={() => onCategoryChange(category.value)}
+          key={category._id}
+          variant={
+            selectedCategory === category.slug.current ? 'default' : 'outline'
+          }
+          onClick={() => onCategoryChange(category.slug.current)}
           className='rounded-full'
         >
-          {category.label}
+          {category.title}
         </Button>
       ))}
     </div>

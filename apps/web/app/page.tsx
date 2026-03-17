@@ -1,18 +1,24 @@
-'use client';
-
 import Link from 'next/link';
 import { ProductCard } from '@/components/product-card';
 import { Button } from '@/components/ui/button';
-import { getFeaturedProducts } from '@/lib/products';
+import {
+  getFeaturedProducts,
+  getHomePage,
+  getAboutSection,
+} from '@/lib/sanity/queries';
 import About from './_components/About';
 import Hero from './_components/Hero';
 
-export default function HomePage() {
-  const featuredProducts = getFeaturedProducts().slice(0, 4);
+export default async function HomePage() {
+  const [featuredProducts, homePageData, aboutData] = await Promise.all([
+    getFeaturedProducts(),
+    getHomePage(),
+    getAboutSection(),
+  ]);
 
   return (
     <>
-      <Hero />
+      {homePageData && <Hero data={homePageData} />}
 
       <section
         className='py-20 px-4 sm:px-6 lg:px-8'
@@ -22,16 +28,17 @@ export default function HomePage() {
         <div className='container mx-auto max-w-7xl'>
           <div className='text-center mb-12'>
             <h2 className='text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-foreground mb-4'>
-              Featured Products
+              {homePageData?.featuredHeading || 'Featured Products'}
             </h2>
             <p className='text-lg text-muted-foreground max-w-2xl mx-auto'>
-              Our most popular items, loved by customers
+              {homePageData?.featuredSubheading ||
+                'Our most popular items, loved by customers'}
             </p>
           </div>
 
           <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8'>
-            {featuredProducts.map(product => (
-              <ProductCard key={product.id} product={product} />
+            {featuredProducts.slice(0, 4).map(product => (
+              <ProductCard key={product._id} product={product} />
             ))}
           </div>
 
@@ -44,7 +51,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      <About />
+      {aboutData && <About data={aboutData} />}
     </>
   );
 }
