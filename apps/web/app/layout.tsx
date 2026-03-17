@@ -37,6 +37,13 @@ export default async function RootLayout({
 }) {
   const companyInfo = await getCompanyInfo();
 
+  const fallbackCompanyInfo = companyInfo || {
+    _id: '',
+    name: 'Cake Paradise',
+    email: 'treatsbycakeparadise@gmail.com',
+    phone: '+91 76960 03371',
+  };
+
   return (
     <html lang='en' className={`${inter.variable} ${fraunces.variable}`}>
       <body>
@@ -44,7 +51,7 @@ export default async function RootLayout({
         <div className='min-h-screen bg-background'>
           <Header />
           {children}
-          <Footer companyInfo={companyInfo} />
+          <Footer companyInfo={fallbackCompanyInfo} />
         </div>
         <Toaster />
       </body>
