@@ -9,8 +9,8 @@
     "start": "sanity start"
   },
   "dependencies": {
-    "sanity": "^3.72.1",
-    "@sanity/vision": "^3.72.1",
+    "sanity": "^5.16.0",
+    "@sanity/vision": "^5.16.0",
     "@sanity/image-url": "^1.1.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
