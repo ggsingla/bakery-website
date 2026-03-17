@@ -19,6 +19,7 @@
     }
   },
   "devDependencies": {
+    "@sanity/client": "^7.17.0",
     "prettier": "^3.7.4"
   }
 }
