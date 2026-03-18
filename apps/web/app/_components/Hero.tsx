@@ -60,7 +60,7 @@ const Hero = ({ data }: HeroProps) => {
               <Image
                 src={
                   data.heroImage
-                    ? urlFor(data.heroImage).width(800).height(600).url()
+                    ? urlFor(data.heroImage).url()
                     : '/table-top-view.webp'
                 }
                 alt='Cake Paradise products on table'
@@ -69,7 +69,7 @@ const Hero = ({ data }: HeroProps) => {
                 priority
                 unoptimized
               />
-              <div className='absolute inset-0 bg-gradient-to-t from-black/20 to-transparent' />
+              <div className='absolute inset-0 bg-linear-to-t from-black/20 to-transparent' />
             </div>
 
             {/* Floating elements for visual interest */}
